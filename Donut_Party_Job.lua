@@ -56,6 +56,7 @@ AddEventHandler("donut::party::job.start", function()
 		if lineSet == Config.JobLine[2] then
             TriggerServerEvent("donut::party::job.pickup", 2, i)
         end
+        Wait(2000)
 		local countpump = getItemCount("Pumpkin")
         if i == 30 then
             ClearData();
@@ -81,6 +82,6 @@ AddEventHandler("donut::party::job.start", function()
             end
         end
 
-        Wait(4000)
+        Wait(2000)
     end
 end)
