@@ -1,4 +1,4 @@
-print("inject")
+print("inject 2.0")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
@@ -44,17 +44,16 @@ AddEventHandler("donut::party::job.start", function()
 
     -- เลือก JobLine set ตาม propcheck
     local lineSet = propcheck and Config.JobLine[1] or Config.JobLine[2]
-    number = propcheck and 1 or 2
-
 
     -- วาปทีละจุด
+    local Dt = JobData[Id];
     for i, pos in ipairs(lineSet) do
         -- วาปผู้เล่นไปตำแหน่ง pos
         local playerPed = PlayerPedId()
         SetEntityCoords(playerPed, pos.x, pos.y, pos.z, false, false, false, true)
         print("วาปไปจุด #" .. i .. ": ", pos)
         Wait(1000)
-		TriggerServerEvent("donut::party::job.pickup", number, i)
+		TriggerServerEvent("donut::party::job.pickup", Dt.MainId, i)
 		local countpump = getItemCount("Pumpkin")
         Wait(4000)
 		if i == 30 and countpump ~= 90 then
