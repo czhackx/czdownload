@@ -1,4 +1,4 @@
-print("inject 1.0")
+print("inject 1.1")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
@@ -60,23 +60,23 @@ AddEventHandler("donut::party::job.start", function()
         Wait(4000)
         if i == 30 then
             ClearData();
+            countpump = getItemCount("Pumpkin")
+            if countpump < 89 then
+                local target = vector3(-277.2416, 6044.6504, 30.9002)
+                local radius = 50.0
+
+                local ped = PlayerPedId()
+                SetEntityCoords(ped, target)
+
+                -- รอจนกว่าจะอยู่ในรัศมี
+                while #(GetEntityCoords(ped) - target) > radius do
+                    Wait(500)
+                end
+                print("อยู่ในรัศมีแล้ว ออกจากลูป")
+                ClearData();
+                Wait(2000)
+                TriggerServerEvent("donut::party::job.start", {})
+            end
         end
-		if i == 30 and countpump ~= 90 then
-			local target = vector3(-277.2416, 6044.6504, 30.9002)
-			local radius = 50.0
-
-			local ped = PlayerPedId()
-			SetEntityCoords(ped, target)
-
-			-- รอจนกว่าจะอยู่ในรัศมี
-			while #(GetEntityCoords(ped) - target) > radius do
-				Wait(500)
-			end
-			print("อยู่ในรัศมีแล้ว ออกจากลูป")
-			ClearData();
-			Wait(2000)
-			TriggerServerEvent("donut::party::job.start", {})
-		end
-		
     end
 end)
