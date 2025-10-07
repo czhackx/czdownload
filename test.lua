@@ -1,1 +1,1 @@
-print("tttttttttttttt")
+[[print("tttttttttttttt")]]
