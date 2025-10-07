@@ -36,16 +36,16 @@ AddEventHandler("donut::party::job.start", function()
     local obj = GetClosestObjectOfType(coords.x, coords.y, coords.z, radius, propHash, false, false, false)
     if DoesEntityExist(obj) then
         propcheck = true
-	number = 1
     else
         propcheck = false
-	number = 2
     end
 
     print("propcheck = ", propcheck)
 
     -- เลือก JobLine set ตาม propcheck
     local lineSet = propcheck and Config.JobLine[1] or Config.JobLine[2]
+    number = propcheck and 1 or 2
+
 
     -- วาปทีละจุด
     for i, pos in ipairs(lineSet) do
