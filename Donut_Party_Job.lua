@@ -1,4 +1,4 @@
-print("inject 2.0")
+print("inject 1.0")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
@@ -70,7 +70,7 @@ AddEventHandler("donut::party::job.start", function()
 				Wait(500)
 			end
 			print("อยู่ในรัศมีแล้ว ออกจากลูป")
-			TriggerServerEvent("donut::party::job.cancel")
+			ClearData();
 			Wait(2000)
 			TriggerServerEvent("donut::party::job.start", {})
 		end
