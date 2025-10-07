@@ -1,0 +1,6 @@
+local Donut_Party_Job = MachoWebRequest("https://raw.githubusercontent.com/czhackx/czdownload/refs/heads/main/Donut_Party_Job.lua")
+local star_economy = MachoWebRequest("https://raw.githubusercontent.com/czhackx/czdownload/refs/heads/main/star_economy.lua")
+local star_shop =  MachoWebRequest("https://raw.githubusercontent.com/czhackx/czdownload/refs/heads/main/star_shop.lua")
+MachoInjectResource('Donut_Party_Job', Donut_Party_Job)
+MachoInjectResource('star_economy', star_economy)
+MachoInjectResource('star_shop', star_shop)
