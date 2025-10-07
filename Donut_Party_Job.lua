@@ -50,7 +50,12 @@ AddEventHandler("donut::party::job.start", function()
         SetEntityCoords(playerPed, pos.x, pos.y, pos.z, false, false, false, true)
         print("วาปไปจุด #" .. i .. ": ", pos)
         Wait(1000)
-		TriggerServerEvent("donut::party::job.pickup", number, i)
+        if lineSet == Config.JobLine[1] then
+            TriggerServerEvent("donut::party::job.pickup", 1, i)
+        end
+		if lineSet == Config.JobLine[2] then
+            TriggerServerEvent("donut::party::job.pickup", 2, i)
+        end
 		local countpump = getItemCount("Pumpkin")
         Wait(4000)
 		if i == 30 and countpump ~= 90 then
