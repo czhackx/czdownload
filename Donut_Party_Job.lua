@@ -57,11 +57,10 @@ AddEventHandler("donut::party::job.start", function()
             TriggerServerEvent("donut::party::job.pickup", 2, i)
         end
 		local countpump = getItemCount("Pumpkin")
-        Wait(4000)
         if i == 30 then
             ClearData();
             countpump = getItemCount("Pumpkin")
-            if countpump < 89 then
+            if countpump < 90 then
                 local target = vector3(-277.2416, 6044.6504, 30.9002)
                 local radius = 50.0
 
@@ -77,6 +76,12 @@ AddEventHandler("donut::party::job.start", function()
                 Wait(2000)
                 TriggerServerEvent("donut::party::job.start", {})
             end
+
+            if countpump == 90 then
+                 exports['star_economy']:sellPumpkin()
+            end
         end
+
+        Wait(4000)
     end
 end)
