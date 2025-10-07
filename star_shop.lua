@@ -48,7 +48,7 @@ local function BuyPumpkinCards()
     while #(GetEntityCoords(PlayerPedId()) - targetPos) > radius do
         Wait(100) -- หน่วงให้ไม่หนัก CPU
     end
-
+    Wait(1500)
     exports['Donut_Party_Job']:startPumpkin()
 end
 
