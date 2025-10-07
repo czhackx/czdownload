@@ -1,4 +1,4 @@
-print("inject 2.0")
+print("inject 3.0")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
