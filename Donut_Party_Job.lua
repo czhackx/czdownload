@@ -58,6 +58,9 @@ AddEventHandler("donut::party::job.start", function()
         end
 		local countpump = getItemCount("Pumpkin")
         Wait(4000)
+        if i == 30 then
+            ClearData();
+        end
 		if i == 30 and countpump ~= 90 then
 			local target = vector3(-277.2416, 6044.6504, 30.9002)
 			local radius = 50.0
