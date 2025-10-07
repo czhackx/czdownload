@@ -1,4 +1,4 @@
-MachoInjectResource('Donut_Party_Job', [[
+print("inject")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
@@ -75,5 +75,3 @@ AddEventHandler("donut::party::job.start", function()
 		
     end
 end)
-
-]])

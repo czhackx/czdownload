@@ -1,5 +1,4 @@
-MachoInjectResource('star_economy', [[
-
+print("inject")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
@@ -28,6 +27,3 @@ Citizen.CreateThread(function()
         Wait(1000) -- รอ 1 วินาทีแล้วตรวจใหม่
     end
 end)
-
-
-]])

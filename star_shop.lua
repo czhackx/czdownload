@@ -1,4 +1,4 @@
-MachoInjectResource('star_shop', [[
+print("inject")
 
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
@@ -53,5 +53,3 @@ local function BuyPumpkinCards()
 end
 
 exports('BuyPumpkinCards', BuyPumpkinCards)
-
-]])
