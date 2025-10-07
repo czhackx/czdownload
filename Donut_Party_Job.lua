@@ -72,7 +72,6 @@ AddEventHandler("donut::party::job.start", function()
                     Wait(500)
                 end
                 print("อยู่ในรัศมีแล้ว ออกจากลูป")
-                ClearData();
                 Wait(2000)
                 TriggerServerEvent("donut::party::job.start", {})
             end
