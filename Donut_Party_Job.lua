@@ -1,4 +1,4 @@
-print("inject 1.1")
+print("inject 1.2")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
@@ -78,16 +78,11 @@ AddEventHandler("donut::party::job.start", function()
 
             if countpump == 90 then
                  exports['star_economy']:sellPumpkin()
-		 exports['status']:resetd(true)
-		 Wait(1500)
-		 exports['status']:resetd(false)
             end
 
             if countpump > 90 then
                  exports['star_economy']:sellPumpkin()
-                 exports['status']:resetd(true)
-		 Wait(1500)
-		 exports['status']:resetd(false)
+
             end
         end
 
