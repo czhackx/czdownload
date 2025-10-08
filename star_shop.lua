@@ -30,7 +30,7 @@ local function BuyPumpkinCards()
                     -- จำลองกดปุ่มซื้อ
         local result = lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Card Pumpkin","Limit":5,"Name":"Card_Pumpkin","Price":2000}],"Paytype":"money","Zone_Index":1}'))
 	Wait(500)
-	lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Hamburger","Limit":10,"Name":"Hamburger","Price":200}],"Paytype":"money","Zone_Index":1}'))
+	lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Hamburger","Limit":10,"Name":"hamburger","Price":200}],"Paytype":"money","Zone_Index":1}'))
 	Wait(500)
 	lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Fruit juice","Limit":10,"Name":"fruit_juice","Price":300}],"Paytype":"money","Zone_Index":1}'))
                     -- จำลองปิด UI หลังซื้อเสร็จ
