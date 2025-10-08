@@ -49,7 +49,7 @@ AddEventHandler("donut::party::job.start", function()
         local playerPed = PlayerPedId()
         SetEntityCoords(playerPed, pos.x, pos.y, pos.z, false, false, false, true)
         print("วาปไปจุด #" .. i .. ": ", pos)
-        Wait(1000)
+        Wait(500)
         if lineSet == Config.JobLine[1] then
             TriggerServerEvent("donut::party::job.pickup", 1, i)
         end
@@ -73,19 +73,24 @@ AddEventHandler("donut::party::job.start", function()
                     Wait(500)
                 end
                 print("อยู่ในรัศมีแล้ว ออกจากลูป")
-                Wait(2000)
                 TriggerServerEvent("donut::party::job.start", {})
             end
 
             if countpump == 90 then
                  exports['star_economy']:sellPumpkin()
+		 exports['status']:resetd(true)
+		 Wait(1500)
+		 exports['status']:resetd(false)
             end
 
             if countpump > 90 then
                  exports['star_economy']:sellPumpkin()
+                 exports['status']:resetd(true)
+		 Wait(1500)
+		 exports['status']:resetd(false)
             end
         end
 
-        Wait(2000)
+        Wait(1500)
     end
 end)

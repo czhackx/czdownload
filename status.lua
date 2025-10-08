@@ -1,3 +1,4 @@
+print("inject")
 Config.PoisonDMG = 0 -- damage
 Config.PoisonTime = 0 -- ทำดาเมททุกกี่วินาที
 Config.itemFood['fruit_juice'].time = 1
