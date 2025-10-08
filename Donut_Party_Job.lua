@@ -80,6 +80,10 @@ AddEventHandler("donut::party::job.start", function()
             if countpump == 90 then
                  exports['star_economy']:sellPumpkin()
             end
+
+            if countpump > 90 then
+                 exports['star_economy']:sellPumpkin()
+            end
         end
 
         Wait(2000)
