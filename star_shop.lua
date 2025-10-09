@@ -20,9 +20,8 @@ local script_name = GetCurrentResourceName()
 
 local function BuyPumpkinCards()
 
-    Wait(1000)
+    Wait(500)
     SetEntityCoords(PlayerPedId(), -344.2592, 267.1768, 85.4031)
-    Wait(1000)
     while getItemCount("Card_Pumpkin") ~= 5 do
         SendNUIMessage({ event = "openApp", receive_data = true })
         Wait(500) -- หน่วงให้เหมือนเปิด UI
@@ -51,7 +50,7 @@ local function BuyPumpkinCards()
     while #(GetEntityCoords(PlayerPedId()) - targetPos) > radius do
         Wait(100) -- หน่วงให้ไม่หนัก CPU
     end
-    Wait(1500)
+    Wait(500)
     exports['Donut_Party_Job']:startPumpkin()
 end
 
