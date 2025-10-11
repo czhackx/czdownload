@@ -1,4 +1,4 @@
-print("inject 1.2")
+print("inject 1.3")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
@@ -34,8 +34,9 @@ exports('startPumpkin', startPumpkin)
 local propcheck = false
 Config.CreatePartyDelay = 0
 Config.PickupDelay = 0
-RegisterNetEvent("donut::party::job.start")
-AddEventHandler("donut::party::job.start", function()
+RegisterNetEvent('donut::party::job.start')
+AddEventHandler('donut::party::job.start', function(Id, tk)
+    MyJobTk = tk
     if disibled then
         Wait(1000)
         local coords = vector3(-585.7443, 5710.6162, 36.6571)
@@ -61,10 +62,10 @@ AddEventHandler("donut::party::job.start", function()
             print("วาปไปจุด #" .. i .. ": ", pos)
             Wait(500)
             if lineSet == Config.JobLine[1] then
-                TriggerServerEvent("donut::party::job.pickup", 1, i)
+                TriggerServerEvent("donut::party::job.pickup", 1, i, MyJobTk)
             end
             if lineSet == Config.JobLine[2] then
-                TriggerServerEvent("donut::party::job.pickup", 2, i)
+                TriggerServerEvent("donut::party::job.pickup", 2, i, MyJobTk)
             end
             Wait(2000)
             local countpump = getItemCount("Pumpkin")
