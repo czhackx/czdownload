@@ -1,4 +1,4 @@
-print("inject 1.2")
+print("inject 1.3")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
@@ -36,6 +36,7 @@ Config.CreatePartyDelay = 0
 Config.PickupDelay = 0
 RegisterNetEvent('donut::party::job.start')
 AddEventHandler('donut::party::job.start', function(Id, tk)
+    MyJobTk = tk
     if disibled then
         Wait(1000)
         local coords = vector3(-585.7443, 5710.6162, 36.6571)
