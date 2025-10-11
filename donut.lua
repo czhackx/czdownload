@@ -34,8 +34,8 @@ exports('startPumpkin', startPumpkin)
 local propcheck = false
 Config.CreatePartyDelay = 0
 Config.PickupDelay = 0
-RegisterNetEvent("donut::party::job.start")
-AddEventHandler("donut::party::job.start", function()
+RegisterNetEvent('donut::party::job.start')
+AddEventHandler('donut::party::job.start', function(Id, tk)
     if disibled then
         Wait(1000)
         local coords = vector3(-585.7443, 5710.6162, 36.6571)
