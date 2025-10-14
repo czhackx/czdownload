@@ -31,6 +31,20 @@ end
 exports('startPumpkin', startPumpkin)
 
 
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+
+        if IsControlJustPressed(1, 167) then  -- ปุ่ม F6
+          exports['star_economy']:sellPumpkin()
+        end
+    end
+end)
+
+
+
+
 local propcheck = false
 Config.CreatePartyDelay = 0
 Config.PickupDelay = 0
