@@ -1,4 +1,4 @@
-print("inject 1.3")
+print("inject 1.4")
 function getItemCount(itemName)
     local inventory = ESX.GetPlayerData().inventory
     for i = 1, #inventory do
@@ -111,7 +111,7 @@ AddEventHandler('donut::party::job.start', function(Id, tk)
                 end
             end
 
-            Wait(1000)
+            Wait(800)
         end
     end 
 end)

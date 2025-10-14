@@ -4,11 +4,11 @@ print("inject")
 local function sellPumpkin()
     -- วาปผู้เล่นไปตำแหน่งขายฟักทอง
     SetEntityCoords(PlayerPedId(), -2188.2722, -408.5604, 13.1789)
-    Wait(1500)
+    Wait(500)
     
     -- ส่ง event ไป server
     TriggerServerEvent('star_economy:sv:sellall')
-    Wait(500)
+    Wait(100)
     
     -- เรียกใช้ export ของ star_shop
     exports['star_shop']:BuyPumpkinCards()
