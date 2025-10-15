@@ -37,7 +37,7 @@ local function BuyPumpkinCards()
         SetNuiFocus(false, false)
 
         print("ผลลัพธ์การซื้อ:", result)
-        Wait(100)
+        Wait(200)
     end
 
 	local targetPos = vector3(-277.2416, 6044.6504, 30.9002)
@@ -50,7 +50,7 @@ local function BuyPumpkinCards()
     while #(GetEntityCoords(PlayerPedId()) - targetPos) > radius do
         Wait(100) -- หน่วงให้ไม่หนัก CPU
     end
-    Wait(100)
+    Wait(500)
     exports['Donut_Party_Job']:startPumpkin()
 end
 
