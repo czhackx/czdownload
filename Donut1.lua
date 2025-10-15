@@ -17,8 +17,7 @@ end
 local disibled = true
 
 RegisterCommand("disibledf", function(source, args, rawCommand)
-    disibled = not disibled
-    print("Pumpkin Farm = " .. tostring(disibled))
+    disibled = false
 end, false)
 
 
@@ -37,6 +36,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
 
         if IsControlJustPressed(1, 167) then  -- ปุ่ม F6
+          disibled = true
           exports['star_economy']:sellPumpkin()
         end
     end
@@ -98,7 +98,9 @@ AddEventHandler('donut::party::job.start', function(Id, tk)
                         Wait(500)
                     end
                     print("อยู่ในรัศมีแล้ว ออกจากลูป")
-                    TriggerServerEvent("donut::party::job.start", {})
+		if disibled then
+	    		TriggerServerEvent("donut::party::job.start", {})
+    		end
                 end
 
                 if countpump == 90 then
