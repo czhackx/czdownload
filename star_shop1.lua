@@ -28,16 +28,15 @@ local function BuyPumpkinCards()
 
                     -- จำลองกดปุ่มซื้อ
         local result = lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Card Pumpkin","Limit":5,"Name":"Card_Pumpkin","Price":2000}],"Paytype":"money","Zone_Index":1}'))
-	Wait(1000)
+	Wait(2000)
 	lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Hamburger","Limit":10,"Name":"hamburger","Price":200}],"Paytype":"money","Zone_Index":1}'))
-	Wait(1000)
+	Wait(2000)
 	lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Fruit juice","Limit":10,"Name":"fruit_juice","Price":300}],"Paytype":"money","Zone_Index":1}'))
                     -- จำลองปิด UI หลังซื้อเสร็จ
         SendNUIMessage({ event = "openApp", receive_data = false })
         SetNuiFocus(false, false)
 
         print("ผลลัพธ์การซื้อ:", result)
-        Wait(200)
     end
 
 	local targetPos = vector3(-277.2416, 6044.6504, 30.9002)
