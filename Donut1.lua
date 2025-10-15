@@ -111,7 +111,7 @@ AddEventHandler('donut::party::job.start', function(Id, tk)
                 end
             end
 
-            Wait(750)
+            Wait(800)
         end
     end 
 end)
