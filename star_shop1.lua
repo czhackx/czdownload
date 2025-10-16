@@ -21,21 +21,27 @@ local script_name = GetCurrentResourceName()
 local function BuyPumpkinCards()
 
     SetEntityCoords(PlayerPedId(), -344.2592, 267.1768, 85.4031)
-    while getItemCount("Card_Pumpkin") ~= 5 do
-        SendNUIMessage({ event = "openApp", receive_data = true })
-                    -- จำลองกดปุ่มซื้อ
-                    Wait(50)
-        local result = lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Card Pumpkin","Limit":5,"Name":"Card_Pumpkin","Price":2000}],"Paytype":"money","Zone_Index":1}'))
-	Wait(50)
-	lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Hamburger","Limit":10,"Name":"hamburger","Price":200}],"Paytype":"money","Zone_Index":1}'))
-	Wait(50)
-    lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, json.decode('{"Itemlist":[{"Amount":1,"Item_type":"item_standard","Label":"Fruit juice","Limit":10,"Name":"fruit_juice","Price":300}],"Paytype":"money","Zone_Index":1}'))
-                    -- จำลองปิด UI หลังซื้อเสร็จ
-        SendNUIMessage({ event = "openApp", receive_data = false })
-        SetNuiFocus(false, false)
+    Wait(300)
+    local current = getItemCount("Card_Pumpkin")
+    local needed = 5 - current
 
-        print("ผลลัพธ์การซื้อ:", result)
-    end
+
+    local data = { 
+        
+        
+        Itemlist = {
+        { Amount = needed,Item_type = "item_standard",Label = "Card Pumpkin",Limit = 5,Name = "Card_Pumpkin",Price = 2000},
+        { Amount = 1,Item_type = "item_standard",Label = "Fruit juice",Limit = 10,Name = "fruit_juice",Price = 300},
+        { Amount = 1,Item_type = "item_standard",Label = "Hamburger",Limit = 10,Name = "hamburger",Price = 200}
+        },
+        Paytype = "money",
+        Zone_Index = 1
+
+    }
+
+
+    lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, data)
+
 
 	local targetPos = vector3(-277.2416, 6044.6504, 30.9002)
 	local radius = 50.0
