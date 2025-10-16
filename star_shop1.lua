@@ -51,6 +51,7 @@ local function BuyPumpkinCards()
     }
 
     lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, data)
+    Wait(1000)
     lib.callback.await(script_name .. ":Sv:On_Shop_Buy", false, datax)
 
 	local targetPos = vector3(-277.2416, 6044.6504, 30.9002)
