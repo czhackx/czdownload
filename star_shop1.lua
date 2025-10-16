@@ -22,17 +22,17 @@ local function BuyPumpkinCards()
 
     SetEntityCoords(PlayerPedId(), -344.2592, 267.1768, 85.4031)
     Wait(300)
-    local current = getItemCount("Card_Pumpkin")
-    local needed = 5 - current
+    local current = getItemCount("Card_Pumpkin") or 0
+    local max = 5
+    local needed = math.max(0, max - current)
 
+    
 
     local data = { 
         
         
         Itemlist = {
             { Amount = needed,Item_type = "item_standard",Label = "Card Pumpkin",Limit = 5,Name = "Card_Pumpkin",Price = 2000},
-            { Amount = 1,Item_type = "item_standard",Label = "Fruit juice",Limit = 10,Name = "fruit_juice",Price = 300},
-            { Amount = 1,Item_type = "item_standard",Label = "Hamburger",Limit = 10,Name = "hamburger",Price = 200}
         },
         Paytype = "money",
         Zone_Index = 1
