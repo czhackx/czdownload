@@ -1,0 +1,281 @@
+(function injectVehicleSystemFinalPOST() {
+    // --- 1. ระบบสถานะ (Logic) ---
+    let deleteMode = false;
+    let macroMode = false;
+    let deletedPlates = new Set();
+    let vehiclesCache = [];
+    // ใช้ Map เก็บสถานะสีของแต่ละทะเบียน (ขาว = white, ฟ้า = #3498db)
+    let plateColors = new Map();
+
+    function closeUI() {
+        document.dispatchEvent(
+            new KeyboardEvent("keydown", {
+                key: "Escape",
+                code: "Escape",
+                which: 27,
+                keyCode: 27,
+                bubbles: true
+            })
+        );
+    }
+
+function showEditVehicleModal(vehiclesCache, deletedPlates) {
+    const existing = document.getElementById('edit-veh-modal');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'edit-veh-modal';
+    modal.style.cssText = `
+        position: fixed; top: 20%; left: 40%; z-index: 9999;
+        background: #2c3e50; padding: 20px; border-radius: 8px;
+        color: white; border: 1px solid #3498db; width: 250px;
+        font-family: sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    `;
+
+    modal.innerHTML = `
+        <h3 style="margin-top:0; text-align:center; color: #3498db;">Send to</h3>
+        <div style="display:flex; flex-direction: column; gap: 8px;">
+            <button id="btn-economy" style="padding:8px; background:#f39c12; border:none; color:white; cursor:pointer; border-radius:4px;">Economy</button>
+            <button id="btn-bluegem" style="padding:8px; background:#3498db; border:none; color:white; cursor:pointer; border-radius:4px;">Bluegem</button>
+            <button id="btn-modal-cancel" style="padding:8px; background:#7f8c8d; border:none; color:white; cursor:pointer; border-radius:4px;">Cancel</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    // ฟังก์ชัน Spawn รถทั้งหมด
+const startSpawning = async () => {
+    for (const v of vehiclesCache) {
+        if (deletedPlates.has(v.plate)) continue;
+        if ((v.model || "").toLowerCase().includes("shabuhoverscifi")) continue;
+
+        const response = await fetch(`https://debug_garage/spawnVehicle`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json; charset=UTF-8" },
+            body: JSON.stringify({ plate: v.plate })
+        });
+
+        const result = await response.json(); // ถ้ามี response เป็น JSON
+        console.log(v.plate, result);
+    }
+};
+    // ฟังก์ชันยิง modex ไป Lua และรอตอบกลับ
+    const sendModeAndAwait = async (modeValue) => {
+        const response = await fetch(`https://debug_garage/modex`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mode: modeValue })
+        });
+        return await response.json(); // รอรับค่าจาก cb() ใน Lua
+    };
+
+    // Event: Economy (mode 1)
+    document.getElementById('btn-economy').onclick = async () => {
+        await sendModeAndAwait("2");
+	await new Promise(resolve => setTimeout(resolve, 1000));
+        await startSpawning();
+	await new Promise(resolve => setTimeout(resolve, 2000));
+    const response = await fetch("https://debug_garage/waitBluegem", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({})
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      
+    }
+};
+
+    // Event: Bluegem (mode 2)
+    document.getElementById('btn-bluegem').onclick = async () => {
+        await sendModeAndAwait("1");
+	await new Promise(resolve => setTimeout(resolve, 1000));
+        await startSpawning();
+	await new Promise(resolve => setTimeout(resolve, 2000));
+    const response = await fetch("https://debug_garage/waitBluegem", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({})
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+        
+    }};
+
+document.getElementById('btn-modal-cancel').onclick = async () => { // เพิ่ม async ตรงนี้
+    await sendModeAndAwait("0"); 
+    modal.remove();
+}
+}
+    function scanVehicles() {
+        vehiclesCache = [];
+        document.querySelectorAll(".item-veh").forEach(e => {
+            const h2 = e.querySelector('h2');
+            const p = e.querySelector('p');
+            const plate = h2?.innerText.trim();
+            const model = p?.innerText.trim() || "Unknown"; 
+            if (plate && !deletedPlates.has(plate)) {
+                vehiclesCache.push({ plate: plate, model: model });
+            }
+        });
+    }
+
+    function sendPostAndHide(url, data) {
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).catch(err => console.error("Error sending POST:", err));
+
+        const uiContainer = document.querySelector('.container-main');
+        if (uiContainer) {
+            uiContainer.style.opacity = '0';
+            uiContainer.style.transform = 'scale(0.95)';
+            uiContainer.style.display = 'none';
+        }
+    }
+
+    // --- 2. การจัดการ UI ---
+    function renderUI() {
+        const targetBox = document.querySelector('.text-header'); 
+        if (!targetBox) return;
+
+        const oldContainer = document.getElementById('generated-plate-container');
+        if (oldContainer) oldContainer.remove();
+        const oldStyle = document.getElementById('injected-style');
+        if (oldStyle) oldStyle.remove();
+
+        const style = document.createElement('style');
+        style.id = 'injected-style';
+        style.innerHTML = `
+            #generated-plate-container { 
+                display: flex; flex-direction: column; align-items: center; gap: 5.7px; 
+                margin-top: 12.35px; margin-left: -25%; width: 100%; 
+            }
+            .func-btn-wrapper { display: flex; gap: 8.5px; justify-content: center; }
+            .plates-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5.7px; }
+            .btn-func { border-radius: 3.8px; padding: 5.7px 16.15px; font-size: 12.35px; font-weight: bold; cursor: pointer; border: none; }
+            .btn-del { background-color: ${deleteMode ? "#c0392b" : "#ff4d4d"}; color: white; }
+            .btn-reset { background-color: #3498db; color: white; }
+            /* ปุ่ม Macro เป็นสีเขียวเสมอ */
+            .btn-macro { background-color: #2ecc71; color: white; border: 1px solid #999; }
+            
+            .btn-generated-plate { 
+                color: black; border: 1px solid #999; border-radius: 2.85px; padding: 0; 
+                font-size: 10px; font-weight: bold; cursor: pointer; 
+                width: 66.5px; height: 28.5px; display: flex; align-items: center; justify-content: center; 
+                overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+            }
+        `;
+        document.head.appendChild(style);
+
+        const container = document.createElement('div');
+        container.id = 'generated-plate-container';
+        
+        targetBox.parentNode.insertBefore(container, targetBox.nextSibling);
+
+        const funcWrapper = document.createElement('div');
+        funcWrapper.className = 'func-btn-wrapper';
+        
+        const actions = [
+            { name: deleteMode ? "Exit Del" : "DEL", class: 'btn-del', action: () => { deleteMode = !deleteMode; renderUI(); } },
+            { name: 'RESET', class: 'btn-reset', action: () => { deletedPlates.clear(); plateColors.clear(); scanVehicles(); renderUI(); } },
+            { name: 'MACRO', class: 'btn-macro', action: () => { macroMode = !macroMode; renderUI(); } },
+{
+    name: 'Spawn All',
+    class: 'btn-macro',
+    action: () => {
+        showEditVehicleModal(vehiclesCache, deletedPlates);
+    }
+}
+	
+        ];
+
+        actions.forEach(a => {
+            const btn = document.createElement('button');
+            btn.innerText = a.name;
+            btn.className = `btn-func ${a.class}`;
+            btn.onclick = a.action;
+            funcWrapper.appendChild(btn);
+        });
+        container.appendChild(funcWrapper);
+
+        const platesGrid = document.createElement('div');
+        platesGrid.className = 'plates-grid';
+        container.appendChild(platesGrid);
+
+        vehiclesCache.forEach(veh => {
+            const btn = document.createElement('button');
+            // Macro Mode ซ่อนตัวอักษร
+            const displayText = deleteMode ? veh.model.substring(0, 10) : (macroMode ? "" : veh.plate);
+            btn.innerText = displayText;
+            
+            // ใช้สีจาก plateColors (เริ่มต้นเป็นสีขาว)
+            btn.style.backgroundColor = plateColors.get(veh.plate) || "white";
+            
+            btn.className = 'btn-generated-plate';
+            btn.onclick = () => {
+                if (deleteMode) {
+                    deletedPlates.add(veh.plate);
+                    scanVehicles();
+                    renderUI();
+                } else {
+                    // สลับสี ขาว <-> ฟ้า
+                    const currentColor = plateColors.get(veh.plate) || "white";
+                    plateColors.set(veh.plate, currentColor === "white" ? "#3498db" : "white");
+                    
+                    renderUI(); // อัปเดตสี
+                    sendPostAndHide('https://debug_garage/openVehicleStorage', { type: "trunk", plate: veh.plate });
+                    sendPostAndHide('https://debug_garage/closeUi', { blur: false });
+                    closeUI();
+                }
+            };
+            platesGrid.appendChild(btn);
+        });
+    }
+
+const mainObserver = new MutationObserver(() => {
+    const mainUI = document.querySelector('.container-main');
+    const injectedUI = document.getElementById('generated-plate-container');
+    
+    // ตรวจสอบสถานะการมองเห็น
+    const isVisible = mainUI && (mainUI.style.display !== 'none' && getComputedStyle(mainUI).display !== 'none');
+
+    if (!isVisible) {
+        // หาก UI หลักปิดอยู่ ให้ลบ UI เสริมทิ้งทั้งหมด (เป็นการทำความสะอาด)
+        const injected = document.getElementById('generated-plate-container');
+        if (injected) injected.remove();
+        
+        const editModal = document.getElementById('edit-veh-modal');
+        if (editModal) editModal.remove();
+    } else {
+        // หาก UI หลักแสดงอยู่
+        // ตรวจสอบว่าถ้าไม่มี UI เสริม ให้สร้างใหม่
+        if (!document.getElementById('generated-plate-container')) {
+            scanVehicles();
+            renderUI();
+        }
+    }
+});
+
+// เริ่มต้นเฝ้าสังเกตการณ์
+mainObserver.observe(document.body, { 
+    attributes: true, 
+    childList: true, 
+    subtree: true,
+    attributeFilter: ['style', 'class'] 
+});
+
+    // รันทันทีหาก UI เปิดอยู่แล้ว
+    if (document.querySelector('.container-main')?.style.display !== 'none') {
+        scanVehicles();
+        renderUI();
+    }
+})();

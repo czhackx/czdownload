@@ -1,0 +1,81 @@
+(function() {
+    let isWaitingClear = false;
+    let wasOpen = false;
+    let isReady = false;
+
+    // 🔥 LOOP หลัก
+    setInterval(() => {
+        const wrapper = document.querySelector('#nc-wrapper');
+        const isOpen = wrapper && wrapper.classList.contains('show');
+
+        // ❌ UI ปิด → รีเซ็ต
+        if (!isOpen) {
+            isWaitingClear = false;
+            wasOpen = false;
+            isReady = false;
+            return;
+        }
+
+        // 🔥 UI เพิ่งเปิด
+        if (!wasOpen) {
+            wasOpen = true;
+            isReady = false;
+
+            setTimeout(() => {
+                isReady = true;
+            }, 2000);
+
+            return;
+        }
+
+        if (!isReady) return;
+
+        let total = 0;
+
+        document.querySelectorAll('.nc-item[data-name="blue_gem"]').forEach(item => {
+            const count = item.querySelector('.item-count')?.innerText;
+            total += Number(count || 0);
+        });
+
+        // 🔒 รอเคลียร์
+        if (isWaitingClear) {
+            if (total === 0) {
+                isWaitingClear = false;
+            }
+            return;
+        }
+
+        // 🚀 ยิง
+        if (total > 0) {
+            isWaitingClear = true;
+
+            fetch('https://nc_economy/SellAll', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    shopId: 0,
+                    list: [
+                        { itemIndex: 17, index: 1, name: "blue_gem" }
+                    ]
+                })
+            });
+
+            console.log('Sell Coconut:', total);
+        }
+
+    }, 50);
+
+
+    // 🔥 LOOP แยก: force reset ทุก 3 วิ
+    setInterval(() => {
+        const wrapper = document.querySelector('#nc-wrapper');
+        const isOpen = wrapper && wrapper.classList.contains('show');
+
+        if (isOpen) {
+            isWaitingClear = false;
+        }
+    }, 3000);
+
+})();

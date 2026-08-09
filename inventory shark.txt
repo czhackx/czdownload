@@ -1,0 +1,90 @@
+(function() {
+    // ลบตัวตรวจจับเก่าออกก่อน (ถ้ามี) เพื่อไม่ให้รันซ้ำซ้อน
+    if (window.f12AutoTakeInterval) {
+        clearInterval(window.f12AutoTakeInterval);
+    }
+
+    console.log('⏳ กำลังเริ่มระบบดักจับเพื่อฝังปุ่มเข้า UI หลัก...');
+
+    // ฟังก์ชันสำหรับฝังปุ่มเข้าไปใน UI หลัก
+    function injectButtonToMainUI() {
+        // 1. ค้นหาไอเทมเพื่อแกะรอยหา Container หลัก
+        const itemSample = document.querySelector('.nc-item');
+        if (!itemSample) return; // ถ้ายังไม่เปิด UI หรือยังไม่มีไอเทม ให้ข้ามไปก่อน
+
+        // 2. หา Container ที่ครอบไอเทมอยู่ (parentElement) 
+        // *คุณสามารถเปลี่ยนตรงนี้เป็นคลาสของกล่อง UI หลักได้ เช่น document.querySelector('.inventory-wrapper')*
+        const uiContainer = itemSample.parentElement; 
+        if (!uiContainer) return;
+
+        // 3. ตรวจสอบว่ามีปุ่มถูกฝังอยู่แล้วหรือยัง เพื่อป้องกันปุ่มงอกซ้ำ
+        if (uiContainer.querySelector('#f12-auto-take-btn')) return;
+
+        // 4. สร้างปุ่ม
+        const btn = document.createElement('button');
+        btn.id = 'f12-auto-take-btn';
+        btn.innerText = 'Auto Take';
+        
+        // ตกแต่งสไตล์ให้เป็นแบบ Block เพื่อให้กลมกลืนในหน้า UI
+        Object.assign(btn.style, {
+            width: '100%',
+            padding: '12px',
+            marginBottom: '10px',
+            backgroundColor: '#ff4757',
+            color: 'white',
+            border: 'none',
+            borderRadius: '6px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            fontSize: '14px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+            transition: 'background-color 0.2s'
+        });
+
+        // 5. นำปุ่มไปแทรกไว้เป็นอันดับแรกสุดภายใน Container UI หลัก
+        uiContainer.insertBefore(btn, uiContainer.firstChild);
+
+        // 6. คำสั่งเมื่อกดปุ่ม (Loop POST หน่วง 100ms)
+        btn.onclick = async (e) => {
+            e.stopPropagation(); // ป้องกัน Event บัคทะลุไปโดน UI ด้านหลัง
+            
+            btn.disabled = true;
+            btn.innerText = '⏳ กำลังทำงาน...';
+            btn.style.backgroundColor = '#576574';
+
+            const items = ["jelly_cherry", "popcorn", "pudding_honey", "matcha_latte", "melon"];
+            const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+            for (const itemName of items) {
+                await delay(100);
+                try {
+                    await fetch('https://nc_inventory/DoAction', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: itemName,
+                            type: "item",
+                            count: 60,
+                            action: "drag",
+                            sub_action: "take",
+                            total_count: 60
+                        })
+                    });
+                    console.log(`✅ ดึงสำเร็จ: ${itemName}`);
+                } catch(err) {
+                    console.error(`❌ ดึงล้มเหลว: ${itemName}`, err);
+                }
+            }
+
+            btn.disabled = false;
+            btn.innerText = 'Auto Take';
+            btn.style.backgroundColor = '#ff4757';
+        };
+
+        console.log('✅ ฝังปุ่ม Auto Take เข้าไปใน UI หลักสำเร็จแล้ว!');
+    }
+
+    // ตั้งเวลาตรวจสอบทุกๆ 1 วินาที 
+    // รองรับกรณีที่ UI หลักถูกทำลาย (Destroy DOM) และสร้างใหม่เมื่อเปิดกระเป๋าอีกรอบ ปุ่มก็จะถูกฝังใหม่ให้อัตโนมัติ
+    window.f12AutoTakeInterval = setInterval(injectButtonToMainUI, 1000);
+})();
