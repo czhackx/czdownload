@@ -1,0 +1,325 @@
+2026.05.31 05:33:55 INFO: Loaded VA for NtUserBlockInput = 0x00007FFC69948450
+2026.05.31 05:33:55 INFO: Loaded VA for NtUserQueryWindow = 0x00007FFC69941230
+2026.05.31 05:33:55 INFO: Loaded VA for NtUserGetForegroundWindow = 0x00007FFC699417B0
+2026.05.31 05:33:55 INFO: Loaded VA for NtUserBuildHwndList = 0x00007FFC699413B0
+2026.05.31 05:33:55 INFO: Loaded VA for NtUserFindWindowEx = 0x00007FFC69941DB0
+2026.05.31 05:33:55 INFO: Loaded VA for NtUserGetClassName = 0x00007FFC69941F50
+2026.05.31 05:33:55 INFO: Loaded VA for NtUserInternalGetWindowText = 0x00007FFC69941C70
+2026.05.31 05:33:55 INFO: Loaded VA for NtUserGetThreadState = 0x00007FFC69941030
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtQuerySystemInformation
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtQueryInformationProcess
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationProcess
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtQueryObject
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtYieldExecution
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtGetContextThread
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtSetContextThread
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtClose
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtDuplicateObject
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtCreateThreadEx
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtSetDebugFilterState
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking KiUserExceptionDispatcher
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtContinue
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Finding jmp to RtlQuerySystemTime at NtQuerySystemTime
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtQuerySystemTime at 00007FFC6C045F50
+2026.05.31 05:33:55 DEBUG: ApplyNtdllHook -> Hooking NtQueryPerformanceCounter
+2026.05.31 05:33:55 DEBUG: ApplyKernel32Hook -> Using Kernelbase 00007FFC69BD0000 instead of kernel32 00007FFC6B750000
+2026.05.31 05:33:55 DEBUG: ApplyKernel32Hook -> _GetTickCount 00007FFC69C20F80 _GetTickCount64 00007FFC69C22E80 _GetLocalTime 00007FFC69C2FA80 _GetSystemTime 00007FFC69C2E7A0 _OutputDebugStringA 00007FFC69BFCF70
+2026.05.31 05:33:55 DEBUG: ApplyKernel32Hook -> Hooking GetTickCount
+2026.05.31 05:33:55 DEBUG: ApplyKernel32Hook -> Hooking GetTickCount64
+2026.05.31 05:33:55 DEBUG: ApplyKernel32Hook -> Hooking GetLocalTime
+2026.05.31 05:33:55 DEBUG: ApplyKernel32Hook -> Hooking GetSystemTime
+2026.05.31 05:33:55 DEBUG: ApplyKernel32Hook -> Hooking OutputDebugStringA
+2026.05.31 05:33:55 DEBUG: ApplyUserHook -> HookedNtUserBlockInput 00000259F1251E3C HookedNtUserFindWindowEx 00000259F1251E98 HookedNtUserBuildHwndList 00000259F1251FD0 HookedNtUserBuildHwndList_Eight 00000259F1252030 HookedNtUserQueryWindow 00000259F125209C HookedNtUserGetForegroundWindow 00000259F12520FC
+2026.05.31 05:33:55 DEBUG: ApplyUserHook -> _NtUserBlockInput 00007FFC69948450 _NtUserFindWindowEx 00007FFC69941DB0 _NtUserBuildHwndList 00007FFC699413B0 _NtUserQueryWindow 00007FFC69941230 _NtUserGetForegroundWindow 00007FFC699417B0
+2026.05.31 05:33:55 DEBUG: ApplyUserHook -> Hooking NtUserBlockInput
+2026.05.31 05:33:55 DEBUG: ApplyUserHook -> Hooking NtUserFindWindowEx
+2026.05.31 05:33:55 DEBUG: ApplyUserHook -> Hooking NtUserBuildHwndList
+2026.05.31 05:33:55 DEBUG: ApplyUserHook -> Hooking NtUserQueryWindow
+2026.05.31 05:33:55 DEBUG: ApplyUserHook -> Hooking NtUserGetForegroundWindow
+2026.05.31 05:33:55 INFO: Hook injection successful, image base 00000259F1250000
+2026.05.31 05:35:17 INFO: Loaded VA for NtUserBlockInput = 0x00007FFC69948450
+2026.05.31 05:35:17 INFO: Loaded VA for NtUserQueryWindow = 0x00007FFC69941230
+2026.05.31 05:35:17 INFO: Loaded VA for NtUserGetForegroundWindow = 0x00007FFC699417B0
+2026.05.31 05:35:17 INFO: Loaded VA for NtUserBuildHwndList = 0x00007FFC699413B0
+2026.05.31 05:35:17 INFO: Loaded VA for NtUserFindWindowEx = 0x00007FFC69941DB0
+2026.05.31 05:35:17 INFO: Loaded VA for NtUserGetClassName = 0x00007FFC69941F50
+2026.05.31 05:35:17 INFO: Loaded VA for NtUserInternalGetWindowText = 0x00007FFC69941C70
+2026.05.31 05:35:17 INFO: Loaded VA for NtUserGetThreadState = 0x00007FFC69941030
+2026.05.31 05:35:17 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:17 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:17 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:17 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 ERROR: Failed to write hook dll data
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:18 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 INFO: Loaded VA for NtUserBlockInput = 0x00007FFC69948450
+2026.05.31 05:35:50 INFO: Loaded VA for NtUserQueryWindow = 0x00007FFC69941230
+2026.05.31 05:35:50 INFO: Loaded VA for NtUserGetForegroundWindow = 0x00007FFC699417B0
+2026.05.31 05:35:50 INFO: Loaded VA for NtUserBuildHwndList = 0x00007FFC699413B0
+2026.05.31 05:35:50 INFO: Loaded VA for NtUserFindWindowEx = 0x00007FFC69941DB0
+2026.05.31 05:35:50 INFO: Loaded VA for NtUserGetClassName = 0x00007FFC69941F50
+2026.05.31 05:35:50 INFO: Loaded VA for NtUserInternalGetWindowText = 0x00007FFC69941C70
+2026.05.31 05:35:50 INFO: Loaded VA for NtUserGetThreadState = 0x00007FFC69941030
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 ERROR: Failed to write hook dll data
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtSetInformationThread 00007FFC6C06D170 _NtQuerySystemInformation 00007FFC6C06D690 _NtQueryInformationProcess 00007FFC6C06D2F0 _NtSetInformationProcess 00007FFC6C06D350 _NtQueryObject 00007FFC6C06D1D0
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtYieldExecution 00007FFC6C06D890 _NtGetContextThread 00007FFC6C06EE20 _NtSetContextThread 00007FFC6C070160 _KiUserExceptionDispatcher 00007FFC6C070E90 _NtContinue 00007FFC6C06D830
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> _NtClose 00007FFC6C06D1B0 _NtDuplicateObject 00007FFC6C06D750 _NtSetDebugFilterState 00007FFC6C070180 _NtCreateThread 00007FFC6C06D990 _NtCreateThreadEx 00007FFC6C06E800 _NtQuerySystemTime 00007FFC6C06DB10 _NtQueryPerformanceCounter 00007FFC6C06D5F0 _NtResumeThread 00007FFC6C06DA10
+2026.05.31 05:35:50 DEBUG: ApplyNtdllHook -> Hooking NtSetInformationThread

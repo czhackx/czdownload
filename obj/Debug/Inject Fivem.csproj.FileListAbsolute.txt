@@ -1,0 +1,8 @@
+E:\Project\Inject Fivem\Inject Fivem\obj\Debug\Inject Fivem.csproj.AssemblyReference.cache
+E:\Project\Inject Fivem\Inject Fivem\obj\Debug\Inject Fivem.csproj.CoreCompileInputs.cache
+E:\project\Inject Fivem\Inject Fivem\bin\Debug\exe.exe.config
+E:\project\Inject Fivem\Inject Fivem\bin\Debug\exe.exe
+E:\project\Inject Fivem\Inject Fivem\bin\Debug\exe.pdb
+E:\project\Inject Fivem\Inject Fivem\obj\Debug\exe.exe
+E:\project\Inject Fivem\Inject Fivem\obj\Debug\exe.pdb
+E:\project\Inject Fivem\Inject Fivem\obj\Debug\exe.exe.config
