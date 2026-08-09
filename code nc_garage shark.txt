@@ -1,0 +1,147 @@
+(() => {
+    // Cleanup ของเก่า
+    const oldPanel = document.getElementById("nc-custom-panel");
+    if (oldPanel) oldPanel.remove();
+    if (window.__ncGarageInterval) clearInterval(window.__ncGarageInterval);
+
+    let deleteMode = false;
+    let macroMode = false;
+    let vehiclesCache = [];
+    const selectedPlates = new Set();
+    const deletedPlates = new Set();
+
+    function isGarageOpen() {
+        return !!document.querySelector(".nc-garage.show");
+    }
+
+    function closeUI() {
+        document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", code: "Escape", keyCode: 27, bubbles: true }));
+    }
+
+    async function postOpenStorage(plate) {
+        try {
+            await fetch("https://nc_garage/OpenStorage", {
+                method: "POST",
+                headers: { "Content-Type": "application/json; charset=UTF-8" },
+                body: JSON.stringify({ type: "trunk", vehicleType: "car", plate: plate })
+            });
+            setTimeout(closeUI, 150);
+        } catch (e) { console.log(e); }
+    }
+
+    function scanVehicles() {
+        vehiclesCache = [];
+        document.querySelectorAll(".nc-vehicle").forEach(vehicle => {
+            const plate = vehicle.querySelector(".nc-vehicle__data__plate")?.innerText?.trim();
+            const model = vehicle.querySelector(".nc-vehicle__data__title")?.innerText?.trim();
+            if (!plate || !model || deletedPlates.has(plate)) return;
+            vehiclesCache.push({ plate, model });
+        });
+    }
+
+    function createButton(text, color, onclick) {
+        const btn = document.createElement("button");
+        btn.innerText = text;
+        Object.assign(btn.style, { background: color, color: "#fff", border: "none", borderRadius: "6px", padding: "6px 12px", cursor: "pointer", fontSize: "12px", margin: "2px" });
+        btn.onclick = onclick;
+        return btn;
+    }
+
+    function renderPanel() {
+        const mainUI = document.querySelector(".nc-garage.show");
+        if (!mainUI) return;
+
+        let panel = document.getElementById("nc-custom-panel");
+        if (!panel) {
+            panel = document.createElement("div");
+            panel.id = "nc-custom-panel";
+            // จัดตำแหน่งให้ไปอยู่ทางขวาของ UI หลัก
+            const rect = mainUI.getBoundingClientRect();
+            Object.assign(panel.style, {
+                position: "fixed",
+                top: rect.top + "px",
+                left: (rect.right + 20) + "px", // ห่างจากขอบขวา 20px
+                width: "250px",
+                background: "rgba(0,0,0,0.8)",
+                padding: "15px",
+                borderRadius: "10px",
+                zIndex: "9999",
+                color: "#fff",
+                border: "1px solid #444"
+            });
+            document.body.appendChild(panel);
+        }
+
+        panel.innerHTML = ""; // Clear content
+
+        const top = document.createElement("div");
+        Object.assign(top.style, { display: "flex", gap: "5px", marginBottom: "10px", justifyContent: "center" });
+        top.appendChild(createButton(deleteMode ? "Exit Del" : "Delete", "#ef4444", () => { deleteMode = !deleteMode; renderPanel(); }));
+        top.appendChild(createButton("Reset", "#3b82f6", () => { deletedPlates.clear(); selectedPlates.clear(); scanVehicles(); renderPanel(); }));
+        top.appendChild(createButton("Macro", macroMode ? "#22c55e" : "#10b981", () => { macroMode = !macroMode; renderPanel(); }));
+
+        const list = document.createElement("div");
+        Object.assign(list.style, { display: "flex", flexWrap: "wrap", gap: "5px", maxHeight: "400px", overflowY: "auto" });
+
+      vehiclesCache.forEach(vehicle => {
+    const btn = document.createElement("button");
+    const isSelected = selectedPlates.has(vehicle.plate);
+    
+    // ตั้งค่าข้อความ: ถ้าถูกเลือกให้เติม XX ถ้าไม่ถูกเลือกให้แสดงป้ายเดิม
+    const displayPlate = isSelected ? `${vehicle.plate} #` : vehicle.plate;
+    btn.innerText = deleteMode ? vehicle.model : displayPlate;
+
+    Object.assign(btn.style, {
+        width: "115px", 
+        height: "30px",
+        background: deleteMode ? "#facc15" : "#374151", // ใช้สีเทาเป็นพื้นฐาน
+        color: "#fff", 
+        border: "none", 
+        borderRadius: "4px", 
+        cursor: "pointer", 
+        fontSize: "10px"
+    });
+
+    btn.onclick = () => {
+    if (deleteMode) {
+        deletedPlates.add(vehicle.plate);
+        scanVehicles();
+        renderPanel();
+        return;
+    }
+
+    // 1. สลับสถานะใน Set ไม่ว่าจะเป็นป้ายแบบไหน
+    if (selectedPlates.has(vehicle.plate)) {
+        selectedPlates.delete(vehicle.plate);
+    } else {
+        selectedPlates.add(vehicle.plate);
+    }
+
+    // 2. เรียก postOpenStorage เสมอเมื่อมีการคลิก (โดยส่งค่าดั้งเดิมไป)
+    // การส่งค่าที่นี่จะไม่มีตัวอักษร XX ปน เพราะเราใช้ vehicle.plate โดยตรง
+    postOpenStorage(vehicle.plate);
+
+    // 3. สั่งวาด Panel ใหม่เพื่อให้ปุ่มเปลี่ยนชื่อ XX ไปมาตามสถานะ
+    renderPanel();
+};
+    list.appendChild(btn);
+});
+
+        panel.appendChild(top);
+        panel.appendChild(list);
+    }
+
+    function mainLoop() {
+        if (!isGarageOpen()) {
+            const p = document.getElementById("nc-custom-panel");
+            if (p) p.remove();
+            return;
+        }
+        if (!document.getElementById("nc-custom-panel") || vehiclesCache.length === 0) {
+            scanVehicles();
+            renderPanel();
+        }
+    }
+
+    window.__ncGarageInterval = setInterval(mainLoop, 100);
+})();

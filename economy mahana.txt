@@ -1,0 +1,70 @@
+(function() {
+    let isWaitingClear = false;
+    let wasOpen = false;
+    let isReady = false;
+
+    // 🔥 LOOP หลัก
+    setInterval(() => {
+        // ปรับ Selector: ใช้ .general_resource.show ตามโครงสร้าง UI ใหม่
+        const wrapper = document.querySelector('.general_resource.show');
+        const isOpen = !!wrapper;
+
+        // ❌ UI ปิด → รีเซ็ต
+        if (!isOpen) {
+            isWaitingClear = false;
+            wasOpen = false;
+            isReady = false;
+            return;
+        }
+
+        // 🔥 UI เพิ่งเปิด
+        if (!wasOpen) {
+            wasOpen = true;
+            isReady = false;
+
+            setTimeout(() => {
+                isReady = true;
+            }, 300);
+
+            return;
+        }
+
+        if (!isReady) return;
+
+        let total = 0;
+
+        // ปรับ Selector: ดึงจากรายการไอเทม .nc-item ที่มี data-name="box_bakery"
+        document.querySelectorAll('.nc-item[data-name="box_bakery"]').forEach(item => {
+            const count = item.querySelector('.item-count')?.innerText;
+            total += Number(count || 0);
+        });
+
+        // 🔒 รอเคลียร์
+        if (isWaitingClear) {
+            if (total === 0) {
+                isWaitingClear = false;
+            }
+            return;
+        }
+
+        // 🚀 ยิง POST ไปที่ Endpoint ใหม่
+        if (total > 0) {
+            isWaitingClear = true;
+
+            fetch('https://nc_economy/SellAll', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    shopId: 0,
+                    list: [
+                        { itemIndex: 1, index: 0, name: "box_bakery" }
+                    ]
+                })
+            });
+
+            console.log('Sell box_bakery:', total);
+        }
+    }, 50);
+})();

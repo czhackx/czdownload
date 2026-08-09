@@ -1,0 +1,304 @@
+/* ===============================
+   GLOBAL STATE
+================================ */
+
+let takeInterval = null;
+let putInterval = null;
+
+let isTaking = false;
+let isPutting = false;
+let FORCE_STOP = false;
+
+let coconutInterval = null;
+let coconutBadge = null;
+
+const MAX_COUNT = 1000;
+
+/* ===============================
+   UTILS
+================================ */
+
+function isVisible(el) {
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    const s = getComputedStyle(el);
+    return (
+        r.width > 0 &&
+        r.height > 0 &&
+        s.display !== 'none' &&
+        s.visibility !== 'hidden' &&
+        s.opacity !== '0'
+    );
+}
+
+function inventoryVisible() {
+    return isVisible(document.querySelector('#nc-inventory'));
+}
+
+/* ===============================
+   FORCE STOP
+================================ */
+
+function stopAllLoops() {
+    FORCE_STOP = true;
+
+    if (takeInterval) clearInterval(takeInterval);
+    if (putInterval) clearInterval(putInterval);
+
+    takeInterval = null;
+    putInterval = null;
+
+    isTaking = false;
+    isPutting = false;
+}
+
+/* ===============================
+   TAKE ALL
+================================ */
+
+function startTake() {
+    if (takeInterval) return;
+    FORCE_STOP = false;
+
+    let lastLeftCount = 0;
+
+    takeInterval = setInterval(() => {
+        if (FORCE_STOP || !inventoryVisible()) return;
+
+        // 🔵 ฝั่งซ้าย
+        const leftItem = document.querySelector('.nc-primary.inventory .nc-item[data-name="blue_gem"]:not(.hide)');
+        const leftCount = parseInt(
+            leftItem?.querySelector('.item-count .count')?.innerText.replace(/[^\d]/g, '') || '0',
+            10
+        );
+
+        // 🔒 รอจนจำนวน "เปลี่ยน"
+        if (isTaking) {
+            if (leftCount !== lastLeftCount) {
+                isTaking = false;
+            }
+            return;
+        }
+
+        // ❌ ถ้ายังมีของ → ไม่ต้อง take
+        if (leftCount > 0) return;
+
+        // 🔴 ฝั่งขวา
+        const rightItem = document.querySelector('.nc-secondary.inventory .nc-item[data-name="blue_gem"]:not(.hide)');
+        if (!rightItem) return stopAllLoops();
+
+        const rightCount = parseInt(
+            rightItem.querySelector('.item-count .count')?.innerText.replace(/[^\d]/g, '') || '0',
+            10
+        );
+
+        if (rightCount <= 0) return;
+
+        // 🚀 ยิง + จำค่าก่อนยิง
+        isTaking = true;
+        lastLeftCount = leftCount;
+
+        fetch('https://nc_inventory/DoAction', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+            body: JSON.stringify({
+                name: "blue_gem",
+                type: 'item',
+                count: rightCount,
+                action: 'drag',
+                subAction: 'take',
+                totalCount: rightCount
+            })
+        });
+
+        console.log('Take Coconut:', rightCount);
+
+    }, 50);
+}
+
+/* ===============================
+   PUT ALL
+================================ */
+
+function startPut() {
+    if (putInterval) return;
+    FORCE_STOP = false;
+
+    putInterval = setInterval(() => {
+        if (FORCE_STOP || !inventoryVisible() || isPutting) return;
+
+        const target = document.querySelector('.nc-secondary.inventory .nc-item:not(.hide)');
+        if (!target) return;
+
+        const name = target.dataset.name;
+        const targetCount = parseInt(
+            target.querySelector('.item-count .count')?.innerText.replace(/[^\d]/g, '') || '0',
+            10
+        );
+
+        if (targetCount >= MAX_COUNT) return;
+
+        const source = document.querySelector(
+            `.nc-primary.inventory .nc-item[data-name="${name}"]:not(.hide)`
+        );
+        if (!source) return;
+
+        const sourceCount = parseInt(
+            source.querySelector('.item-count .count')?.innerText.replace(/[^\d]/g, '') || '0',
+            10
+        );
+
+        if (sourceCount <= 25) return;
+
+        const putCount = Math.min(sourceCount, MAX_COUNT - targetCount);
+
+        isPutting = true;
+
+        fetch('https://nc_inventory/DoAction', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+            body: JSON.stringify({
+                name,
+                type: 'item',
+                count: putCount,
+                action: 'drag',
+                subAction: 'put',
+                totalCount: putCount
+            })
+        }).finally(() => setTimeout(() => (isPutting = false), 900));
+    }, 500);
+}
+
+/* ===============================
+   PUT x1
+================================ */
+
+function startPutOne() {
+    $.post("https://nc_inventory/DoAction", JSON.stringify({
+            name: "blue_gem",
+            type: "item",
+            count: 30,
+            action: "drag",
+            subAction: "put",
+            totalCount: 30
+        }));
+}
+
+/* ===============================
+   BUTTON UI (BIGGER + CENTER)
+================================ */
+
+function createButtonBar() {
+    const old = document.querySelector('#nc-btn-bar');
+    if (old) old.remove();
+
+    const rightInv = document.querySelector('.nc-secondary.inventory');
+    if (!rightInv) return;
+
+    rightInv.style.position = 'relative';
+
+    const bar = document.createElement('div');
+    bar.id = 'nc-btn-bar';
+    bar.style.cssText = `
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
+        display:flex;
+        gap:12px;
+        z-index:9999;
+    `;
+
+    function btn(text, color, onClick) {
+        const b = document.createElement('button');
+        b.innerText = text;
+        b.style.cssText = `
+            padding:14px 20px;       /* +50% */
+            min-width:110px;
+            background:${color};
+            color:#fff;
+            border:none;
+            border-radius:10px;
+            font-size:18px;          /* +50% */
+            font-weight:bold;
+            cursor:pointer;
+            opacity:.92;
+        `;
+        b.onmouseenter = () => (b.style.opacity = '1');
+        b.onmouseleave = () => (b.style.opacity = '.92');
+        b.onclick = onClick;
+        return b;
+    }
+
+    bar.appendChild(btn('TAKE', '#e74c3c', startTake));
+    bar.appendChild(btn('PUT', '#3498db', startPut));
+    bar.appendChild(btn('STOP', '#2c3e50', stopAllLoops));
+    bar.appendChild(btn('CCN', '#ff00cc', startPutOne));
+
+    rightInv.appendChild(bar);
+}
+
+/* ===============================
+   AUTO STOP WHEN UI CLOSED
+================================ */
+
+let lastInventoryState = false;
+
+setInterval(() => {
+    const nowVisible = inventoryVisible();
+
+    // ถ้าเมื่อกี้เปิดอยู่ แต่ตอนนี้ปิด → หยุดทุก loop
+    if (lastInventoryState && !nowVisible) {
+        stopAllLoops();
+    }
+
+    lastInventoryState = nowVisible;
+}, 200);
+
+
+function startCoconutCounter(){
+
+    coconutBadge = document.createElement("div");
+
+    coconutBadge.style.position = "absolute";
+    coconutBadge.style.background = "#000";
+    coconutBadge.style.color = "#00ff3b";
+    coconutBadge.style.padding = "4px 8px";
+    coconutBadge.style.borderRadius = "6px";
+    coconutBadge.style.fontWeight = "900";
+    coconutBadge.style.fontSize = "16px";
+    coconutBadge.style.pointerEvents = "none";
+    coconutBadge.style.zIndex = "9999";
+
+    document.body.appendChild(coconutBadge);
+
+    coconutInterval = setInterval(()=>{
+
+        const item = document.querySelector('.nc-secondary [data-name="blue_gem"]');
+        const el = document.querySelector('.nc-secondary [data-name="blue_gem"] .count');
+
+        if(!item || !el) return;
+
+        let count = parseInt(el.innerText);
+
+        // ถ้า 1000 ให้แสดง Max
+        let display = count >= 1000 ? "Max" : count;
+
+        const rect = item.getBoundingClientRect();
+
+        coconutBadge.textContent = display;
+        coconutBadge.style.left = (rect.right + 6) + "px";
+        coconutBadge.style.top = rect.top + "px";
+
+    },100);
+}
+
+function stopCoconutCounter(){
+    clearInterval(coconutInterval);
+    coconutBadge?.remove();
+}
+/* ===============================
+   INIT
+================================ */
+
+createButtonBar();

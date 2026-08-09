@@ -1,0 +1,316 @@
+(() => {
+    // cleanup ของเก่า
+    document.querySelectorAll("#nc-btn-container").forEach(e => e.remove());
+
+    if (window.__ncGarageInterval) {
+        clearInterval(window.__ncGarageInterval);
+    }
+
+    if (window.__ncGarageObserver) {
+        window.__ncGarageObserver.disconnect();
+    }
+
+    window.__ncGarageInterval = null;
+    window.__ncGarageObserver = null;
+
+    let deleteMode = false;
+    let macroMode = false;
+
+    let vehiclesCache = [];
+
+    const selectedPlates = new Set();
+    const deletedPlates = new Set();
+
+    // เช็ค ui เปิดจริง
+    function isGarageOpen() {
+        const garage = document.querySelector(".nc-garage");
+
+        if (!garage) return false;
+
+        const style = getComputedStyle(garage);
+
+        return (
+            garage.classList.contains("show") &&
+            style.display !== "none" &&
+            style.visibility !== "hidden" &&
+            garage.offsetParent !== null
+        );
+    }
+
+    function closeUI() {
+        document.dispatchEvent(
+            new KeyboardEvent("keydown", {
+                key: "Escape",
+                code: "Escape",
+                which: 27,
+                keyCode: 27,
+                bubbles: true
+            })
+        );
+    }
+
+    async function postOpenStorage(plate) {
+        try {
+            await fetch("https://nc_garage/OpenStorage", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify({
+                    type: "trunk",
+                    vehicleType: "car",
+                    plate: plate
+                })
+            });
+
+            setTimeout(() => {
+                closeUI();
+            }, 150);
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function scanVehicles() {
+        vehiclesCache = [];
+
+        document.querySelectorAll(".nc-vehicle").forEach(vehicle => {
+
+            const plate = vehicle
+                .querySelector(".nc-vehicle__data__plate")
+                ?.innerText
+                ?.trim();
+
+            const model = vehicle
+                .querySelector(".nc-vehicle__data__title")
+                ?.innerText
+                ?.trim();
+
+            if (!plate || !model) return;
+
+            if (deletedPlates.has(plate)) return;
+
+            vehiclesCache.push({
+                plate,
+                model,
+                element: vehicle
+            });
+        });
+    }
+
+    function renderButtons() {
+
+        // UI ใหม่ไม่มี storage แล้ว
+        const target =
+            document.querySelector(".nc-detail__detail-bottom") ||
+            document.querySelector(".nc-detail__detail-top__data") ||
+            document.querySelector(".nc-detail");
+
+        if (!target) return;
+
+        const old = document.querySelector("#nc-btn-container");
+
+        if (old) old.remove();
+
+        const container = document.createElement("div");
+
+        container.id = "nc-btn-container";
+
+        Object.assign(container.style, {
+            marginTop: "10px",
+            padding: "8px",
+            borderRadius: "8px",
+            background: "rgba(0,0,0,.35)"
+        });
+
+        // top buttons
+        const top = document.createElement("div");
+
+        Object.assign(top.style, {
+            display: "flex",
+            gap: "8px",
+            marginBottom: "8px",
+            flexWrap: "wrap"
+        });
+
+        function createTopButton(text, color, onclick) {
+
+            const btn = document.createElement("button");
+
+            btn.innerText = text;
+
+            Object.assign(btn.style, {
+                background: color,
+                color: "#fff",
+                border: "none",
+                borderRadius: "6px",
+                padding: "6px 12px",
+                cursor: "pointer",
+                fontSize: "12px"
+            });
+
+            btn.onclick = onclick;
+
+            return btn;
+        }
+
+        top.appendChild(
+            createTopButton(
+                deleteMode ? "Exit" : "Del",
+                "#ef4444",
+                () => {
+                    deleteMode = !deleteMode;
+                    renderButtons();
+                }
+            )
+        );
+
+        top.appendChild(
+            createTopButton(
+                "Reset",
+                "#3b82f6",
+                () => {
+                    deletedPlates.clear();
+                    selectedPlates.clear();
+
+                    scanVehicles();
+                    renderButtons();
+                }
+            )
+        );
+
+        top.appendChild(
+            createTopButton(
+                macroMode ? "Macro ON" : "Macro",
+                "#10b981",
+                () => {
+                    macroMode = !macroMode;
+                    renderButtons();
+                }
+            )
+        );
+
+        const list = document.createElement("div");
+
+        Object.assign(list.style, {
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "6px",
+            maxHeight: "180px",
+            overflowY: "auto"
+        });
+
+        vehiclesCache.forEach(vehicle => {
+
+            const btn = document.createElement("button");
+
+            const selected = selectedPlates.has(vehicle.plate);
+
+            btn.innerText = deleteMode
+                ? vehicle.model
+                : macroMode
+                    ? " "
+                    : vehicle.plate;
+
+            Object.assign(btn.style, {
+                width: deleteMode ? "90px" : "42px",
+                height: "32px",
+                background: deleteMode
+                    ? "#fde68a"
+                    : selected
+                        ? "#4ade80"
+                        : "#e5e7eb",
+                color: "#000",
+                border: "1px solid #d1d5db",
+                borderRadius: "6px",
+                cursor: "pointer",
+                padding: "0",
+                fontSize: "11px",
+                overflow: "hidden"
+            });
+
+            btn.onclick = () => {
+
+                if (deleteMode) {
+
+                    deletedPlates.add(vehicle.plate);
+
+                    vehiclesCache = vehiclesCache.filter(
+                        x => x.plate !== vehicle.plate
+                    );
+
+                    selectedPlates.delete(vehicle.plate);
+
+                    renderButtons();
+
+                    return;
+                }
+
+                if (selectedPlates.has(vehicle.plate)) {
+                    selectedPlates.delete(vehicle.plate);
+                } else {
+                    selectedPlates.add(vehicle.plate);
+                }
+
+                renderButtons();
+
+                // auto select vehicle ใหม่
+                vehicle.element.click();
+
+                setTimeout(() => {
+                    postOpenStorage(vehicle.plate);
+                }, 100);
+            };
+
+            list.appendChild(btn);
+        });
+
+        container.appendChild(top);
+        container.appendChild(list);
+
+        target.appendChild(container);
+    }
+
+    function mainLoop() {
+
+        if (!isGarageOpen()) {
+            return;
+        }
+
+        const target =
+            document.querySelector(".nc-detail") ||
+            document.querySelector(".nc-detail__detail-bottom");
+
+        if (!target) {
+            return;
+        }
+
+        if (!document.querySelector("#nc-btn-container")) {
+            scanVehicles();
+            renderButtons();
+        }
+    }
+
+    // loop
+    window.__ncGarageInterval = setInterval(mainLoop, 500);
+
+    // observer กัน ui reload
+    window.__ncGarageObserver = new MutationObserver(() => {
+
+        if (!isGarageOpen()) {
+            return;
+        }
+
+        if (!document.querySelector("#nc-btn-container")) {
+            scanVehicles();
+            renderButtons();
+        }
+    });
+
+    window.__ncGarageObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+})();

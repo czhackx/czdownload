@@ -1,0 +1,56 @@
+(function() {
+    let wasOpen = false;
+    let isReady = false;
+
+    // 🔥 ลูปหลักทำงานทุกๆ 50ms
+    const intervalId = setInterval(() => {
+        const wrapper = document.querySelector('#nc-economy.show');
+        const isOpen = !!wrapper;
+
+        // ❌ ถ้า UI ปิด ให้รีเซ็ตสถานะ
+        if (!isOpen) {
+            wasOpen = false;
+            isReady = false;
+            return;
+        }
+
+        // 🔥 UI เพิ่งเปิด หน่วงเวลาเล็กน้อยให้หน้าจอโหลดเสร็จ
+        if (!wasOpen) {
+            wasOpen = true;
+            isReady = false;
+
+            setTimeout(() => {
+                isReady = true;
+            }, 300);
+
+            return;
+        }
+
+        if (!isReady) return;
+
+        let total = 0;
+        const itemElement = document.querySelector('.shop__content__container__inventory__items__item[data-name="salad"]');
+        if (itemElement) {
+            const countText = itemElement.querySelector('.shop__content__container__inventory__items__item__data__count')?.innerText;
+            total = Number(countText || 0);
+        }
+
+        // 🚀 ถ้ายอดมากกว่า 0 จะทำการยิง POST วนลูปส่งเรื่อยๆ ทันที
+        if (total > 0) {
+            fetch('https://nc_economy/Sell', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    shopId: 1,
+                    itemIndex: 1,
+                    name: "salad",
+                    count: total
+                })
+            });
+
+            console.log('Looping Sell salad:', total);
+        }
+    }, 50); // ปรับความเร็วในการยิงซ้ำได้ที่ตรงนี้ (หน่วยเป็นมิลลิวินาที)
+})();

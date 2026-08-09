@@ -1,0 +1,62 @@
+// 1. เช็คความจุของ Trunk
+let trunkBox = Array.from(document.querySelectorAll('.header-text-invent'))
+    .find(el => el.innerText === 'TRUNK');
+
+let isTrunkFull = false;
+
+if (trunkBox) {
+    let weightText = trunkBox.parentElement.querySelector('.weight').innerText;
+    let [current, max] = weightText.replace('KG.', '').split('/').map(Number);
+    
+    // เช็คว่า Current ถึงหรือเกิน Max หรือยัง
+    if (current >= max) {
+        isTrunkFull = true;
+    }
+}
+
+// 2. ตัดสินใจว่าจะ Action อะไร
+if (isTrunkFull) {
+    // กรณี Trunk เต็ม: Post openplate
+    fetch('https://f_inventory/openplate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({})
+    });
+    console.log("Trunk เต็ม, ส่งคำสั่ง openplate");
+} else {
+    // กรณี Trunk ยังไม่เต็ม: เช็คจำนวนหิน และ Post ข้อมูล
+    let itemNodes = Array.from(document.querySelectorAll('.item-label .text'));
+    let stoneNode = itemNodes.find(el => el.innerText.trim() === 'หิน');
+
+    if (stoneNode) {
+        let parent = stoneNode.closest('.item-data');
+        let amountText = parent.querySelector('.amount-box').innerText;
+        let [currentAmount, maxLimit] = amountText.split('/').map(Number);
+
+        // ทำการ POST ข้อมูลโดยใช้จำนวนปัจจุบันที่อ่านได้ (currentAmount)
+        fetch('https://f_inventory/action:moveItemToSecondary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "item": {
+                    "label": "หิน",
+                    "secondary": {"shared_vault": true, "trunk": true, "personal_vault": true, "glovebox": true},
+                    "isMain": true,
+                    "count": currentAmount, // ใช้ค่าที่อ่านได้จากหน้าจอ
+                    "condition": {"give": true, "use": true, "drop": true},
+                    "limit": maxLimit,      // ใช้ค่า Max ที่อ่านได้จากหน้าจอ
+                    "isFavorite": false,
+                    "name": "stone",
+                    "type": "item_standard",
+                    "filter": "others"
+                },
+                "count": currentAmount,     // ใส่จำนวนที่ต้องการ move
+                "to": "trunk",
+                "action": "put"
+            })
+        });
+        console.log(`ส่งหินจำนวน ${currentAmount} ไปยัง Trunk`);
+    } else {
+        console.log("ไม่พบหินใน Inventory");
+    }
+}
